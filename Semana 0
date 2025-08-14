@@ -1,0 +1,27 @@
+import random
+
+golpesppedra = 6
+tempotrabalho = 60 #minutos
+golpespminuto = 12 #
+
+total_pedra = (golpespminuto * tempotrabalho) // golpesppedra
+
+proba_i = 0.3 #probabilidade de pedra inutil
+proba_f = 0.4 #probabilidade de ferro
+
+necessario = 50
+simulacoes = 10000
+sucessos = 0
+
+for i in range(simulacoes):
+    ferros_coletados = 0
+    for i in range(total_pedra):
+        if random.random() >= proba_i:
+            if random.random() <= proba_f:
+                ferros_coletados += 1
+    if ferros_coletados >= necessario:
+        sucessos += 1
+
+probabilidade = sucessos / simulacoes * 100
+print(f"Pedras mineradas em 1 hora: {total_pedra}")
+print(f"Probabilidade de conseguir {necessario} ferros ou mais:{probabilidade:.2f}%")
